@@ -10,7 +10,7 @@
 ### via PyPI
 
 ```
-pip install nakaketpy
+pip install qwrfpy
 ```
 
 ## Licence
