@@ -18,4 +18,6 @@ setup(
     license='BSD 3-clause',
     long_description=open('README.md', encoding='UTF-8').read(),
     long_description_content_type="text/markdown",
+    url = 'https://github.com/kenty911/QWRFpy',
+    entry_points={"console_scripts":["wrfdraw = qwrfpy.WRFdraw:WRFdraw"]}
 )

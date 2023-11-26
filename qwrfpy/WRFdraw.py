@@ -1,7 +1,4 @@
 # import internal library
-# import sys
-# import time
-# import math
 import os
 import datetime
 import tkinter
@@ -18,7 +15,13 @@ import matplotlib.cm
 import matplotlib.path
 import matplotlib.offsetbox
 import cartopy.crs
-import wrf
+
+# import recommendation library
+try:
+    import wrf
+    wrflib = True
+except:
+    wrflib = False
 
 # set constant
 proj = cartopy.crs.PlateCarree()
@@ -71,23 +74,25 @@ class TKSample(tkinter.Frame):
             "OFF":[],
             "Prog3D":[],
             "Prog4D":[],
-            # see https://wrf-python.readthedocs.io/en/latest/diagnostics.html#diagnostic-table
-            "Diag3D":["ctt",
+            "Addi3D":[
+                    # "LANDUSEF"
+                    #   ,"CAPE","CIN","LCL","LFC",                    
+                      ],
+            # "Addi4D":[],
+            }
+
+        # see https://wrf-python.readthedocs.io/en/latest/diagnostics.html#diagnostic-table
+        if wrflib:
+            self.nc_vars["Diag3D"] = ["ctt",
                       "mdbz","helicity","pw","rh2","slp",
                       "ter","td2","td","updraft_helicity",
-                      ],
-            "Diag4D":["avo","theta_e",
+                      ]
+            self.nc_vars["Diag4D"] = ["avo","theta_e",
                     # "cape_3d",
                     # "cloudfrac",
                     "dbz","geopt","omega","pressure","pvo","rh",
                     "td","tc","theta","temp","tk","tv","height",
                       ],
-            "Addi3D":[
-                    "LANDUSEF"
-                    #   ,"CAPE","CIN","LCL","LFC",                    
-                      ],
-            # "Addi4D":[],
-            }
         
         self.combobox08 = ttk.Combobox(self.root, justify="left", values=["OFF","Prog3D","Prog4D","Diag3D","Diag4D","Addi3D"], state="readonly", width=10)
         self.combobox08.current(0)
@@ -237,6 +242,8 @@ class TKSample(tkinter.Frame):
         self.status = os.path.isfile(self.path)
         tkinter.Label(self.root, text=f"path:{self.status}", font=self.font).place(x=10, y=50)
         print(f"{self.path}:{self.status}")
+        if "wrfinput" in self.path:
+            self.nc_vars["Addi3D"].append("LANDUSEF")
 
         self.getnc_vars()
 
@@ -738,5 +745,4 @@ def WRFdraw():
 
 if __name__ == '__main__':
     print("Running...")
-    app = TKSample(tkinter.Tk())
-    app.mainloop()
+    WRFdraw():
