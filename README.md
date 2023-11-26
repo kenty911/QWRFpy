@@ -8,10 +8,15 @@
 netCDF形式のWRFの入力`wrfinput`と出力結果`wrfout`を簡易的に描写するツール
 
 ## How to Install
-### via PyPI
+<!-- ### via PyPI -->
+<!-- pip install qwrfpy -->
+
+現状だとソースビルドのみに対応した状態
 ```
-pip install qwrfpy
+https://github.com/kenty911/QWRFpy
+python setup.py develop
 ```
+
 ### recommended library
 wrf-python 
 ```
