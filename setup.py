@@ -12,7 +12,7 @@ setup(
     name='qwrfpy',
     packages=find_packages('qwrfpy'),\
     python_requires='>=3.7.0',
-    version='2023.11.4',
+    version='2023.11.5',
     install_requires=INSTALL_REQUIRES,
     author_email = 'ken.314.papa@gmail.com',
     license='BSD 3-clause',
