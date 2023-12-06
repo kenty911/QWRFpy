@@ -145,6 +145,7 @@ def main():
     wrfout_step, wrf_datetime = calc_wrf_tstep(nc)
 
     # 計算に必要な変数
+    wrf.omp_set_num_threads(core_num)
     wrf_lat = np.ma.getdata( nc.variables["XLAT"][0,:,:] )
     wrf_lon = np.ma.getdata( nc.variables["XLONG"][0,:,:])
     U = wrf.getvar(nc, "ua", timeidx = wrf.ALL_TIMES)
