@@ -152,6 +152,7 @@ def main():
     V = wrf.getvar(nc, "va", timeidx = wrf.ALL_TIMES)
     W = wrf.getvar(nc, "wa", timeidx = wrf.ALL_TIMES)
     Z = wrf.getvar(nc, "z", units="m", timeidx = wrf.ALL_TIMES)
+    wrf.omp_set_num_threads(1)
 
     # 解析変数
     for var in ana_varis:
